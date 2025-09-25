@@ -1,0 +1,10 @@
+{
+  "valido": {
+    "email": "taisebac@teste.com",
+    "senha": "123456789"
+  },
+  "invalido": {
+    "email": "taisebac@teste.com",
+    "senha": "senha errada"
+  }
+}

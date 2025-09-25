@@ -10,7 +10,7 @@
 
         Cenário: login na plataforma
         Quando eu inserir e-mail e senha válidos
-        Então sistema deve redirecionar para tela de checkout
+        Então sistema deve redirecionar para tela minha conta
 
         Cenário: login na plataforma
         Quando eu inserir um dos campos inválidos
@@ -20,10 +20,13 @@
         Quando eu inserir um dos campos inválidos por 3 vezes
         Então deve travar o login por 15 minutos
 
+        Cenário: login na plataforma
+        Quando eu deixar um dos campos em branco
+        Então deve exibir mensagem de alerta: "O campo está vazio"
 
         Esquema do Cenário: login na plataforma
         Quando eu inserir <Email> e <Senha> válidos
-        Então deve exibir <resultado> redirecionando para checkout
+        Então deve exibir <resultado> redirecionando para tela minha conta
 
         Examples:
             | Email           | Senha     | Resultado                    |
