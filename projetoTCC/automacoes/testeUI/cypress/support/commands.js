@@ -19,6 +19,12 @@ Cypress.Commands.add('filtrarCategoria', (opcao) => {
     cy.get(catalogoSelectors.escolher(opcao)).should('be.visible').click();
     cy.get(catalogoSelectors.btnBuscar).should('be.visible').click();
 });
+
+Cypress.Commands.add('acessarMinhaConta', () => {
+    cy.get('.dropdown-toggle > .zmdi').click()
+    cy.get('#topmenu > .menu-item-221 > a').click()
+});
+
 //
 //
 // -- This is a child command --
