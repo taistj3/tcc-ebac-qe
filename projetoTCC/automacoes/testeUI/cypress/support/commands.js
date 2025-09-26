@@ -25,6 +25,11 @@ Cypress.Commands.add('acessarMinhaConta', () => {
     cy.get('#topmenu > .menu-item-221 > a').click()
 });
 
+Cypress.Commands.add('detalhesPedido', (numero) => {
+    cy.get('.woocommerce-MyAccount-navigation-link--orders > a').click()
+    cy.get(`:nth-child(${numero}) > .woocommerce-orders-table__cell-order-actions > .woocommerce-button`).contains('Visualizar').click()
+});
+
 //
 //
 // -- This is a child command --
