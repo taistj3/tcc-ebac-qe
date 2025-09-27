@@ -30,6 +30,13 @@ Cypress.Commands.add('detalhesPedido', (numero) => {
     cy.get(`:nth-child(${numero}) > .woocommerce-orders-table__cell-order-actions > .woocommerce-button`).contains('Visualizar').click()
 });
 
+Cypress.Commands.add('alterarSenha', () => {
+        cy.get('.woocommerce-MyAccount-navigation-link--edit-account > a').click()
+        cy.get('[name="password_1"]').type('hfjdcnnoedjjk12345')
+        cy.get('[name="password_2"]').type('hfjdcnnoedjjk12345')
+        cy.get('[name="save_account_details"]').click()
+});
+
 //
 //
 // -- This is a child command --
