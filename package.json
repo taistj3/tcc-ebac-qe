@@ -4,7 +4,8 @@
   "main": "index.js",
   "scripts": {
     "test:api": "jest --runInBand",
-    "test:ui": "cypress open",
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open",
     "wdio": "wdio run ./wdio.conf.js"
   },
   "keywords": [],
