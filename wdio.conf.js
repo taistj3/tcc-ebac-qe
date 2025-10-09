@@ -28,14 +28,21 @@ exports.config = {
     services: [],
     framework: 'mocha',
 
-    reporters: ['spec', 'mochawesome'],
+    reporters: [
+        'spec',
+        ['allure', {
+            outputDir: 'allure-results',
+            disableWebdriverStepsReporting: true,
+            disableWebdriverScreenshotsReporting: false,
+        }],
+    ],
 
     mochaOpts: {
         ui: 'bdd',
         timeout: 60000
     },
 
-     beforeTest: async () => {
+    beforeTest: async () => {
         // Fecha o app
         await driver.terminateApp('br.com.lojaebac');
 
