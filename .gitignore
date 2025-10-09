@@ -1,3 +1,6 @@
 node_modules/
 .idea/
 projetoTCC/automacoes/testesMobile/app/
+allure-results/
+allure-report/
+jest-report/
