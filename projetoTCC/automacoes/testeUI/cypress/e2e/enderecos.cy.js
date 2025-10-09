@@ -2,7 +2,7 @@
 
 import enderecosPage from "../support/page_objects/enderecos.page"
 
-describe('Funcionalidade Minha Conta', () => {
+describe('Funcionalidade Endereços', () => {
     let dadosLogin
     before(() => {
         cy.fixture('login').then(login => {
