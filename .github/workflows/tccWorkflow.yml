@@ -1,0 +1,53 @@
+name: TCC - Testes UI
+
+# Quando o workflow vai rodar
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  cypress-ui:
+    name: Testes UI com Cypress
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout do código
+      - name: Checkout do repositório
+        uses: actions/checkout@v3
+
+      # 2. Configurar Node
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      # 3. Instalar dependências
+      - name: Instalar dependências
+        run: npm ci
+
+      # 4. Rodar testes Cypress
+      - name: Executar testes Cypress
+        run: npm run cypress:run
+
+      # 5. Salvar screenshots e vídeos como artefatos
+      - name: Upload de screenshots e vídeos
+        uses: actions/upload-artifact@v3
+        with:
+          name: cypress-artifacts
+          path: projetoTCC/automacoes/testeUI/cypress/screenshots/**
+
+      # 6. Publicar no GitHub Pages
+      - name: Publicar screenshots e vídeos no GitHub Pages
+        uses: peaceiris/actions-gh-pages@v6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./cypress-gh-pages
+          # copiar arquivos para uma pasta temporária no runner
+      - name: Preparar artefatos para GitHub Pages
+        run: |
+          mkdir -p cypress-gh-pages
+          cp -r projetoTCC/automacoes/testeUI/cypress/screenshots/* cypress-gh-pages/
