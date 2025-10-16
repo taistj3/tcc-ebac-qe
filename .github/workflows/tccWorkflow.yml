@@ -27,7 +27,7 @@ jobs:
 
       # 3. Instalar dependências
       - name: Instalar dependências
-        run: npm install
+        run: npm ci
 
       # 4. Rodar testes Cypress
       - name: Executar testes Cypress
@@ -35,20 +35,22 @@ jobs:
         continue-on-error: true
 
       # 5. Salvar screenshots e vídeos como artefatos
-      - name: Upload de screenshots e vídeos
-        uses: actions/upload-artifact@v4
+      - name: Upload screenshots and videos
+        uses: actions/upload-artifact@v3
         with:
           name: cypress-artifacts
-          path: projetoTCC/automacoes/testeUI/cypress/screenshots/**
+          path: |
+            cypress/screenshots
+            cypress/videos
+            
+      - name: Generate Allure Report
+        run: |
+          npx allure generate --clean allure-results -o allure-report
 
-      # 6. Publicar no GitHub Pages
-      - name: Publicar screenshots e vídeos no GitHub Pages
+      # Deploy do relatório no GitHub Pages
+      - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./cypress-gh-pages
-          # copiar arquivos para uma pasta temporária no runner
-      - name: Preparar artefatos para GitHub Pages
-        run: |
-          mkdir -p cypress-gh-pages
-          cp -r projetoTCC/automacoes/testeUI/cypress/screenshots/* cypress-gh-pages/
+          publish_dir: ./allure-report
+          publish_branch: gh-pages
