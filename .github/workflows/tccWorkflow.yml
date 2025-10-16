@@ -36,13 +36,13 @@ jobs:
 
       # 5. Salvar screenshots e vídeos como artefatos
       - name: Upload screenshots and videos
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-artifacts
           path: |
             cypress/screenshots
             cypress/videos
-            
+
       - name: Generate Allure Report
         run: |
           npx allure generate --clean allure-results -o allure-report
