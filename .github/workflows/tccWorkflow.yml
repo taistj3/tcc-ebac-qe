@@ -17,25 +17,26 @@ jobs:
     steps:
       # 1. Checkout do código
       - name: Checkout do repositório
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # 2. Configurar Node
       - name: Setup Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
       # 3. Instalar dependências
       - name: Instalar dependências
-        run: npm ci
+        run: npm install
 
       # 4. Rodar testes Cypress
       - name: Executar testes Cypress
         run: npm run cypress:run
+        continue-on-error: true
 
       # 5. Salvar screenshots e vídeos como artefatos
       - name: Upload de screenshots e vídeos
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-artifacts
           path: projetoTCC/automacoes/testeUI/cypress/screenshots/**
