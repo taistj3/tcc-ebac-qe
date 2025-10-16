@@ -43,7 +43,7 @@ jobs:
 
       # 6. Publicar no GitHub Pages
       - name: Publicar screenshots e vídeos no GitHub Pages
-        uses: peaceiris/actions-gh-pages@v6
+        uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./cypress-gh-pages
